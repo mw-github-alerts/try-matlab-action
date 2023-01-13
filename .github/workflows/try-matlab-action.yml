@@ -18,13 +18,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      # Use MATLAB Actions to get running MATLAB in GitHub Actions
-      - name: Set up MATLAB
-        uses: matlab-actions/setup-matlab@v1
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v3
         with:
-          release: ${{ matrix.matlab-release }}
+          node-version: 16.x
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
+
+      # Use MATLAB Actions to get running MATLAB in GitHub Actions
+      - name: Set up MATLAB
+        uses: matlab-actions/setup-matlab@v1
+        with:
+          release: ${{ matrix.matlab-release }}
